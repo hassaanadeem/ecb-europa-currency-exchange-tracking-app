@@ -1,65 +1,64 @@
 
-# Welcome to your CDK Python project!
+# Serverless Currency Exchange Tracking Application
 
-You should explore the contents of this project. It demonstrates a CDK app with an instance of a stack (`ecb_europa_currency_exchange_tracking_app_stack`)
-which contains an Amazon SQS queue that is subscribed to an Amazon SNS topic.
+This is an exchange rates tracking application. This application uses the data provided by [European Central Bank](https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html) fetched periodically and stored in the database. This application also evaluates each currency's performance against the previous day's price. The application exposes a public REST API endpoint to fetch the data. This applications is deployable on AWS and LocalStack using the AWS CDK.  
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+The application uses the following AWS Services.
+1. AWS Lambda
+2. AWS DynamoDB
+3. AWS API Gateway
 
-This project is set up like a standard Python project.  The initialization process also creates
-a virtualenv within this project, stored under the .venv directory.  To create the virtualenv
-it assumes that there is a `python3` executable in your path with access to the `venv` package.
-If for any reason the automatic creation of the virtualenv fails, you can create the virtualenv
-manually once the init process completes.
+## Deployment Instructions
 
-To manually create a virtualenv on MacOS and Linux:
+The steps mentioned below are for deployment on Localstack. If you want to deploy on AWS, follow this guide. 
 
+Install [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+
+Install AWS CDK
+```bash
+$ npm install -g aws-cdk-local aws-cdk
 ```
+Clone the repository
+```bash
+$ git clone git@github.com:hassaanadeem/ecb-europa-currency-exchange-tracking-app.git
+```
+Create Python virtual environment
+```bash
 $ python3 -m venv .venv
 ```
-
-After the init process completes and the virtualenv is created, you can use the following
-step to activate your virtualenv.
-
-```
+Activate the virtual enviroment
+```bash
+// For linux and mac
 $ source .venv/bin/activate
-```
 
-If you are a Windows platform, you would activate the virtualenv like this:
-
+// Windows
+$ .\venv\Scripts\activate
 ```
-% .venv\Scripts\activate.bat
-```
-
-Once the virtualenv is activated, you can install the required dependencies.
-
-```
+Install Python packages required to run the app
+```bash
 $ pip install -r requirements.txt
 ```
+Create an account on LocalStack [here](https://app.localstack.cloud/sign-in) and opt for free trial. Also grab your API-KEY from your account
 
-At this point you can now synthesize the CloudFormation template for this code.
+Install [Localstack](https://docs.localstack.cloud/getting-started/installation/).
 
+Run the following commands to start the LocalStack
+```bash
+$ export LOCALSTACK_API_KEY=<YOUR_API_KEY>
+$ localstack start
 ```
-$ cdk synth
+Run the following command to bootstrap the deployment
+```bash
+$ cdklocal bootstrap
 ```
 
-You can now begin exploring the source code, contained in the hello directory.
-There is also a very trivial test included that can be run like this:
-
-```
-$ pytest
+(Optional) Run this command if you want to generate CloudFormation Template
+```bash
+$ cdklocal synth
 ```
 
-To add additional dependencies, for example other CDK libraries, just add to
-your requirements.txt file and rerun the `pip install -r requirements.txt`
-command.
+Deploy application on Localstack
+```bash
+$ cdklocal deploy
+```
 
-## Useful commands
-
- * `cdk ls`          list all stacks in the app
- * `cdk synth`       emits the synthesized CloudFormation template
- * `cdk deploy`      deploy this stack to your default AWS account/region
- * `cdk diff`        compare deployed stack with current state
- * `cdk docs`        open CDK documentation
-
-Enjoy!
