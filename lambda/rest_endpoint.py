@@ -16,6 +16,7 @@ def handler(event, context):
     return response
 
 
+# READS DATA FROM DYNAMODB
 def get_data_from_database():
     dynamodb = boto3.resource("dynamodb", endpoint_url=LOCALSTACK_ENPOINT)
     table = dynamodb.Table(TABLE_NAME)
@@ -29,6 +30,7 @@ def get_data_from_database():
     return items
 
 
+# PREPARES THE API RESPONSE
 def api_response_builder(data_objects):
     response = {
         "publish_date": "N/A",

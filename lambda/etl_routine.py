@@ -48,6 +48,10 @@ def load(date, daily_exchange_data):
             writer.put_item(Item=data)
 
 
+# HELPER FUNCIONS
+
+
+# READS XML AND CREATES A DICT OF DATA
 def read_xml(xml):
     xml_root = xml_et.fromstring(xml)
     xml_root = xml_root.find(XML_NS)
@@ -73,6 +77,7 @@ def read_xml(xml):
     return daily_data
 
 
+# EVALUATES THE CURRENCY PERFORMANCE AGAINST PREVIOUS DAY. RETURNS TODAY'S DATE AND EXCHANGE DATA DICT
 def currency_performance(data):
     current_day, previous_day = data.keys()
 
