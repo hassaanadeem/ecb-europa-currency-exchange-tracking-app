@@ -36,7 +36,7 @@ Install *awslocal*
 ```bash
 $ pip install awscli-local
 ```
-Install Python packages required to run the app
+Run the following command to install Python packages
 ```bash
 $ pip install -r requirements.txt
 ```
@@ -69,4 +69,14 @@ Once the application has been deployed. It will give you an endpoint on the app 
 Run the following command to stop the localstack
 ```bash
 $ localstack stop
+```
+## Running tests
+
+Run the following command to install dev dependencies
+```bash
+$ pip install -r requirements-dev.txt
+```
+Run the following command to run tests
+```bash
+$ python3 -m pytest -v
 ```
