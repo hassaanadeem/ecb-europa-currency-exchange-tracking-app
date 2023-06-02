@@ -27,8 +27,9 @@ class EcbEuropaCurrencyExchangeTrackingAppStack(Stack):
         dynamodb_table = aws_dynamodb.Table(
             self,
             DYNAMO_DB_TABLE,
-            partition_key=dynamodb.Attribute(
-                name=DYNAMO_DB_TABLE_PARTITION_KEY, type=dynamodb.AttributeType.STRING
+            partition_key=aws_dynamodb.Attribute(
+                name=DYNAMO_DB_TABLE_PARTITION_KEY,
+                type=aws_dynamodb.AttributeType.STRING,
             ),
             removal_policy=RemovalPolicy.DESTROY,
         )
