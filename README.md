@@ -34,6 +34,10 @@ $ source .venv/bin/activate
 // Windows
 $ .\venv\Scripts\activate
 ```
+Install *awslocal*
+```bash
+$ pip install awscli-local
+```
 Install Python packages required to run the app
 ```bash
 $ pip install -r requirements.txt
@@ -57,8 +61,14 @@ $ cdklocal bootstrap
 $ cdklocal synth
 ```
 
-Deploy application on Localstack
+Run the following command to deploy application on Localstack
 ```bash
 $ cdklocal deploy
 ```
 
+Once the application has been deployed. It will give you an endpoint on the app is currently running. Copy that endpoint and append **exchange-rate-info** to access the API endpoint.
+
+Run the following command to stop the localstack
+```bash
+$ localstack stop
+```
