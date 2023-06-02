@@ -12,8 +12,6 @@ The application uses the following AWS Services.
 
 The steps mentioned below are for deployment on Localstack. If you want to deploy on AWS, follow this guide. 
 
-Install [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
-
 Install AWS CDK
 ```bash
 $ npm install -g aws-cdk-local aws-cdk
